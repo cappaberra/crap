@@ -145,7 +145,7 @@ async function delHist(id) {
     That's <span id=id_totalrecording></span><br>
     <font size=-1">Page generated in <?php echo substr((utime()-$start), 0, 5); ?> seconds</font>
     <br>
-    <br><font size="-1">Copyright 2026 Noah Pritikin</font>
+    <br><font size="-1">Copyright 2003 Jacob Farkas and 2026 Noah Pritikin</font>
     </center>
 </div>
 </body>
