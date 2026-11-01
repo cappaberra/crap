@@ -28,10 +28,10 @@ $titler=array("Relative ", "Reliability ", "Realistic ", "Relativistic ", "Repor
 $titlea=array("Annoyance ", "Accountability ", "Apathy ", "Average ", "Activity ");
 $titlep=array("Program", "Product", "Percentage", "Project");
 
-$isp_img = "fios.jpg";
+$isp_img = "quantum-fiber.svg";
 $isp_img_w = "255";
 $isp_img_h = "71";
-$isp_url = "http://www.verizon.com/fios";
+$isp_url = "https://www.quantumfiber.com/";
 $a = 0;
 
 if(!empty($_GET['who'])){
@@ -102,7 +102,7 @@ async function delHist(id) {
                 <b>Current crap level:</b>
                 <div style="position: relative; width: <?php echo($isp_img_w); ?>px; height: <?php echo($isp_img_h); ?>px;">
                     <div class=poo>
-                    <a href="<?php echo($isp_url); ?>"><img src="<?php echo($isp_img); ?>" width="<?php echo($isp_img_w); ?>" height="<?php echo($isp_img_h); ?>" border="0"></a>
+                    <a href="<?php echo($isp_url); ?>"><img src="<?php echo($isp_img); ?>" width="<?php echo($isp_img_w); ?>" height="<?php echo($isp_img_h); ?>" border="0" alt="Quantum Fiber"></a>
                     </div>
                     <span class=overlay id=id_overlay></span>
                 </div>
