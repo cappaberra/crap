@@ -1,0 +1,60 @@
+x-app: &app
+  build: .
+  image: crap2-local:latest
+  restart: unless-stopped
+  environment: &environment
+    DB_HOST: db
+    DB_NAME: crap2
+    DB_USER: crap2
+    DB_PASSWORD: ${DB_PASSWORD:-local-crap2-password}
+    TZ: ${TZ:-America/Boise}
+    EXPECTED_UPTIME: ${EXPECTED_UPTIME:-0.9995}
+  depends_on:
+    db:
+      condition: service_healthy
+  logging:
+    driver: json-file
+    options:
+      max-size: "10m"
+      max-file: "3"
+services:
+  web:
+    <<: *app
+    environment:
+      <<: *environment
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:-}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "php", "-r", "exit(@file_get_contents('http://127.0.0.1/health.php') === 'ok' ? 0 : 1);"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+  monitor:
+    <<: *app
+    command: ["/usr/local/bin/crap-worker"]
+    cap_add: [NET_RAW]
+    environment:
+      <<: *environment
+      MONITOR_HOSTS: ${MONITOR_HOSTS:-1.1.1.1,8.8.8.8,9.9.9.9}
+      CHECK_INTERVAL: ${CHECK_INTERVAL:-10}
+      OUTAGE_THRESHOLD: ${OUTAGE_THRESHOLD:-0.335}
+  db:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: crap2
+      MARIADB_USER: crap2
+      MARIADB_PASSWORD: ${DB_PASSWORD:-local-crap2-password}
+      MARIADB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:-local-root-password}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./db/001-init.sql:/docker-entrypoint-initdb.d/001-init.sql:ro
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      start_period: 30s
+      interval: 5s
+      timeout: 5s
+      retries: 30
+volumes:
+  db_data:

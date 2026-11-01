@@ -23,3 +23,14 @@
 /app/Config/core.php
 /app/Config/database.php
 /vendors/*
+
+# Local Docker configuration
+.env
+*.sql.gz
+__pycache__/
+
+# Historical source contains retired credentials; keep it out of Git.
+cvs/
+legacy/
+*.zip
+crap2-backup.sql
