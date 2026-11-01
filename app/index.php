@@ -2,7 +2,7 @@
 require_once __DIR__ . "/session.php";
 
 #-------------------------------------------------------
-# C.R.A.P v2.0
+# C.R.A.P v3.0
 # Charter Reliability Automation Project
 # Frontend to AJAX framework
 #
@@ -46,7 +46,7 @@ $a = !empty($_SESSION['admin']) ? 1 : 0;
 
 <HTML>
 <HEAD>
-<TITLE>CRAP!! v2.0</TITLE>
+<TITLE>CRAP!! v3.0</TITLE>
 <link type="text/css" rel="stylesheet" href="style.css">
 
 <script>
@@ -81,7 +81,7 @@ async function delHist(id) {
 <body link="#FFFFF" alink="#FFFFF" vlink="#FFFFF" onload="loadContent(<?php echo "$a"; ?>);">
 <p style="text-align:right"><a href="admin.php">History administration</a></p>
 <div class="header">
-<center><h1>C&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;v2.0</h1><br>
+<center><h1>C&nbsp;&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;A&nbsp;&nbsp;&nbsp;P&nbsp;&nbsp;&nbsp;v3.0</h1><br>
 <font size=-1>
 <?php
     $x=rand(0,(count($titlec)-1));
@@ -145,7 +145,7 @@ async function delHist(id) {
     That's <span id=id_totalrecording></span><br>
     <font size=-1">Page generated in <?php echo substr((utime()-$start), 0, 5); ?> seconds</font>
     <br>
-    <br><font size="-1">Copyright 2003 Jacob Farkas and 2006 Noah Pritikin</font>
+    <br><font size="-1">Copyright 2026 Noah Pritikin</font>
     </center>
 </div>
 </body>
